@@ -20,6 +20,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StressTests", "StressTests", "{F21F8144-ECD5-4427-9C8C-359178169FC6}"
 	ProjectSection(SolutionItems) = preProject
 		Tests\StressTests\LoadAXBSampleTestPlan.jmx = Tests\StressTests\LoadAXBSampleTestPlan.jmx
+		Tests\StressTests\README.md = Tests\StressTests\README.md
 	EndProjectSection
 EndProject
 Global

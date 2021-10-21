@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace AXBSample.Controllers
@@ -26,11 +27,15 @@ namespace AXBSample.Controllers
 		[HttpGet]
 		public IEnumerable<WeatherForecast> Get()
 		{
+			ulong a = 0;
+			for (ulong i = 0; i < 10; i++)
+				a++;
+			int b = (int)(a % int.MaxValue);
 			var rng = new Random();
 			return Enumerable.Range(1, 5).Select(index => new WeatherForecast
 			{
 				Date = DateTime.Now.AddDays(index),
-				TemperatureC = rng.Next(-20, 55),
+				TemperatureC = rng.Next(-20, b),
 				Summary = Summaries[rng.Next(Summaries.Length)]
 			})
 			.ToArray();
