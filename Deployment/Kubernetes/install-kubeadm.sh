@@ -67,3 +67,7 @@ else
 	echo "system is $os_name"
 fi
 
+# Enable bash completion
+echo "source <(kubectl completion bash)" >> ~/.bashrc
+echo "source <(kubeadm completion bash)" >> ~/.bashrc
+echo "source <(docker completion bash)" >> ~/.bashrc

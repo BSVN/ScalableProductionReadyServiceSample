@@ -37,6 +37,7 @@ sudo kubeadm init --apiserver-advertise-address $api_server_address --apiserver-
 # https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-reset/
 
 # TODO: Check kubeadm init run successfuly
+# TODO: Check adding this node to control plane with kubectl get node
 
 # Check user is root or not
 # https://www.cyberciti.biz/tips/shell-root-user-check-script.html
