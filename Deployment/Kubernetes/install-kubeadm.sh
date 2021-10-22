@@ -2,6 +2,8 @@
 # Letting iptables see bridged traffic
 # https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#letting-iptables-see-bridged-traffic
 
+#!/bin/bash
+
 cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
 br_netfilter
 EOF
