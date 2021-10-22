@@ -23,6 +23,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StressTests", "StressTests"
 		Tests\StressTests\README.md = Tests\StressTests\README.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", "{581DB6C5-F890-431D-9523-7C0309487B15}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernetes", "Kubernetes", "{26241869-DCEE-4C33-B604-DBA198E3D7F5}"
+	ProjectSection(SolutionItems) = preProject
+		Deployment\Kubernetes\install-kubeadm.sh = Deployment\Kubernetes\install-kubeadm.sh
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +47,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{94615D39-CC4D-46E5-9D55-D286E1286275} = {760EB9E7-6626-4696-9D4C-AD04F75723B2}
 		{F21F8144-ECD5-4427-9C8C-359178169FC6} = {A28DC72B-61A2-4E7D-A8FF-D6ED1C1125C6}
+		{26241869-DCEE-4C33-B604-DBA198E3D7F5} = {581DB6C5-F890-431D-9523-7C0309487B15}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {44D1C44E-D9FB-4238-A9A6-09382CBBCED5}
