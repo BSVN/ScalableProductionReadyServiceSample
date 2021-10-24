@@ -35,7 +35,7 @@ then
 
 	# Add the Kubernetes apt repository:
 	# TODO: xenial must based on edition
-	echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+	echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 
 	# Update apt package index, install kubelet, kubeadm and kubectl, and pin their version:
 	sudo apt-get update
