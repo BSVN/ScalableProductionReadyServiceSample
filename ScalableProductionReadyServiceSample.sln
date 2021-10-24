@@ -28,6 +28,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernetes", "Kubernetes", "{26241869-DCEE-4C33-B604-DBA198E3D7F5}"
 	ProjectSection(SolutionItems) = preProject
 		Deployment\Kubernetes\add-control-plane-node.sh = Deployment\Kubernetes\add-control-plane-node.sh
+		Deployment\Kubernetes\install-cilium.sh = Deployment\Kubernetes\install-cilium.sh
 		Deployment\Kubernetes\install-kubeadm.sh = Deployment\Kubernetes\install-kubeadm.sh
 	EndProjectSection
 EndProject
