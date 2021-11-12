@@ -15,6 +15,8 @@ fi
 # TODO: Check if systemd version is greater than 245
 # see GitHub https://github.com/cilium/cilium/issues/10645#issuecomment-949923696
 echo 'net.ipv4.conf.lxc*.rp_filter = 0' > /etc/sysctl.d/99-override_cilium_rp_filter.conf
+echo 'net.ipv4.conf.all.rp_filter = 0' >> /etc/sysctl.d/99-override_cilium_rp_filter.conf
+echo 'net.ipv4.conf.default.rp_filter = 0' >> /etc/sysctl.d/99-override_cilium_rp_filter.conf
 systemctl restart systemd-sysctl
 
 # Check cilium does not install previously
