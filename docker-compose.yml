@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  axbsample:
+    image: ${DOCKER_REGISTRY-}axbsample
+    build:
+      context: .
+      dockerfile: Source/AXBSample/Dockerfile

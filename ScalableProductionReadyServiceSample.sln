@@ -33,6 +33,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernetes", "Kubernetes", 
 		Deployment\Kubernetes\install-kubeadm.sh = Deployment\Kubernetes\install-kubeadm.sh
 	EndProjectSection
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{D75DD692-4AD1-4572-B1B7-2EDFCC99AC82}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{94615D39-CC4D-46E5-9D55-D286E1286275}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94615D39-CC4D-46E5-9D55-D286E1286275}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94615D39-CC4D-46E5-9D55-D286E1286275}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D75DD692-4AD1-4572-B1B7-2EDFCC99AC82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D75DD692-4AD1-4572-B1B7-2EDFCC99AC82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D75DD692-4AD1-4572-B1B7-2EDFCC99AC82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D75DD692-4AD1-4572-B1B7-2EDFCC99AC82}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
