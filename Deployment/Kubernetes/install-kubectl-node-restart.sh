@@ -33,6 +33,6 @@ if ! kubectl node-restart --help &> /dev/null ; then
         exit 1
     fi
 
-    kubectl krew updated
+    kubectl krew update
     kubectl krew install node-restart
 fi

@@ -1,3 +1,7 @@
+# ITNOA
+#
+# This pod is very dangourues
+
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
@@ -24,9 +28,10 @@ spec:
         imagePullPolicy: IfNotPresent
         command:
           - /bin/sh
+        # Restarting host from docker container https://stackoverflow.com/a/24759427/1539100
         args:
           - -c
-          - "while true; do echo 512 | tee /sys/kernel/mm/hugepages/hugepages-2048kB/nr_hugepages;grep HugePages /proc/meminfo; sleep 6000; done"
+          - "while true; do echo 1024 | tee /host-root/sys/kernel/mm/hugepages/hugepages-2048kB/nr_hugepages;grep HugePages /host-root/proc/meminfo; sleep 6000; done"
         volumeMounts:
           - mountPath: /host-root
             name: host-root

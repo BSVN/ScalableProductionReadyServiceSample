@@ -3,6 +3,9 @@
 #!/bin/bash
 
 # Installing OpenEBS as a storage infrastructure on K8s from https://openebs.io/docs/user-guides/installation#installation-through-helm
+#
+# Installing prerequisites from https://docs.openebs.io/v280/docs/next/ugmayastor.html
+# please see configure-hugepages.sh
 
 is_internet_exist=0
 # Check internet connection exist or not?
