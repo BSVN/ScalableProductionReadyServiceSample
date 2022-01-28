@@ -1,6 +1,7 @@
 # ITNOA
 #
 # This pod is very dangourues
+# note: This pod is not usable
 
 apiVersion: apps/v1
 kind: DaemonSet

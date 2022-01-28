@@ -1,0 +1,15 @@
+# ITNOA
+#
+# Defines Redis Enterpsrise Cluster for Harbor
+# Doc: https://github.com/RedisLabs/redis-enterprise-k8s-docs/blob/master/redis_enterprise_cluster_api.md
+
+apiVersion: "app.redislabs.com/v1"
+kind: "RedisEnterpriseDatabase"
+
+metadata:
+  name: "harbordb"
+spec:
+  memorySize: 100MB
+  tlsMode: "disabled"
+  dataInternodeEncryption: false
+  persistence: "disabled"

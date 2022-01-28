@@ -4,6 +4,10 @@
 
 # Installing harbor as a private repository on K8s from https://goharbor.io/docs/2.4.0/install-config/harbor-ha-helm/
 
+# Prerequires:
+#   redis (installing from install-redis.sh)
+#   redis (installing from install-redis.sh)
+
 is_internet_exist=0
 # Check internet connection exist or not?
 if ping 4.2.2.4 -c 2 -W 2 &> /dev/null ; then
