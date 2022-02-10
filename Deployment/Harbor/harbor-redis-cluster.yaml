@@ -10,14 +10,14 @@ metadata:
 spec:
   nodes: 3
   persistentSpec:
-    enabled: true
+    enabled: false
     storageClassName: "openebs-hostpath"
     # https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/quantity/
-    volumeSize: 100M
+    # volumeSize: 100M
   redisEnterpriseNodeResources:
     limits:
       cpu: 1000m
-      memory: 1Gi
+      memory: 4Gi
     requests:
       cpu: 1000m
-      memory: 1Gi
+      memory: 4Gi
