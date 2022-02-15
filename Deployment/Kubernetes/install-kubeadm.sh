@@ -39,8 +39,10 @@ then
 
 	# Update apt package index, install kubelet, kubeadm and kubectl, and pin their version:
 	sudo apt-get update
-	sudo apt-get install -y kubeadm
+	sudo apt-get install -y kubeadm kubelet kubectl docker.io
 	sudo apt-mark hold kubeadm
+
+	sudo systemctl enable --now kubelet
 
 elif [ "$os_name" == "CentOS" ]
 then
@@ -70,4 +72,6 @@ fi
 # Enable bash completion
 echo "source <(kubectl completion bash)" >> ~/.bashrc
 echo "source <(kubeadm completion bash)" >> ~/.bashrc
-echo "source <(docker completion bash)" >> ~/.bashrc
+
+# TODO: How to add docker bash auto completion?
+# echo "source <(docker completion bash)" >> ~/.bashrc
