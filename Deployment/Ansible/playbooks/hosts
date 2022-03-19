@@ -1,0 +1,13 @@
+# ITNOA
+
+[workers]
+host1 ansible_host=172.22.64.3
+host2 ansible_host=172.22.64.4
+host3 ansible_host=172.22.64.5
+host4 ansible_host=172.22.64.6
+
+[all:vars]
+ansible_connection=ssh
+ansible_user=ssoroosh
+ansible_ssh_pass=a
+ansible_become_pass=a
