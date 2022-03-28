@@ -10,6 +10,13 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-L
 
 Invoke-WebRequest -Uri https://aka.ms/wslubuntu2004 -OutFile ~/Ubuntu.zip -UseBasicParsing
 
+Expand-Archive ~/Ubuntu.zip C:\Distros\Ubuntu
+
+Set-Location C:\Distros\Ubuntu
+
+# TODO: Correct name based on version
+Add-AppxPackage .\Ubuntu_2004.2021.825.0_x64.appx
+
 # OpenSSH
 # Install the OpenSSH Client
 Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0
