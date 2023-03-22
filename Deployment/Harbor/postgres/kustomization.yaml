@@ -1,0 +1,31 @@
+# ITNOA
+#
+# Define the Postgresql Cluster for Harbor
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: pgo
+
+resources:
+- postgres.yaml
+
+# For more information please see https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/patches/
+# TODO: Patch using Patch Strategic Merge
+patches:
+  # Naming patch
+  - patch: |-
+      - op: replace
+        path: /metadata/name
+        value: harbor-postgres-cluster
+    target:
+      kind: PostgresCluster
+  # Storage class name patch
+  - patch: |-
+      - op: add
+        path: /spec/instances/0/dataVolumeClaimSpec/storageClassName
+        value: openebs-hostpath
+      - op: add
+        path: /spec/backups/pgbackrest/repos/0/volume/volumeClaimSpec/storageClassName
+        value: openebs-hostpath
+    target:
+      kind: PostgresCluster
+    

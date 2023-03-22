@@ -1,0 +1,20 @@
+# ITNOA
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: axbsample
+  labels:
+    name: axbsample 
+spec:
+  containers:
+  - name : axbsample
+    image: axbsample:latest
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80
+        name: http
+        protocol: TCP

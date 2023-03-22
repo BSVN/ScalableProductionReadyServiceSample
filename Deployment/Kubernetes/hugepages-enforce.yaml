@@ -1,0 +1,46 @@
+# ITNOA
+#
+# This pod is very dangourues
+# note: This pod is not usable
+
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: hugepages-ensure
+  namespace: mayastor
+  labels:
+    app: hugepages-ensure
+spec:
+  selector:
+    matchLabels:
+      name: hugepages-ensure
+  updateStrategy:
+    type: OnDelete
+  template:
+    metadata:
+      name: hugepages-ensure
+      labels:
+        name: hugepages-ensure
+        app: hugepages-ensure
+    spec:
+      containers:
+      - name: shell
+        image: busybox:latest
+        imagePullPolicy: IfNotPresent
+        command:
+          - /bin/sh
+        # Restarting host from docker container https://stackoverflow.com/a/24759427/1539100
+        args:
+          - -c
+          - "while true; do echo 1024 | tee /host-root/sys/kernel/mm/hugepages/hugepages-2048kB/nr_hugepages;grep HugePages /host-root/proc/meminfo; sleep 6000; done"
+        volumeMounts:
+          - mountPath: /host-root
+            name: host-root
+        securityContext:
+          privileged: true
+      dnsPolicy: ClusterFirstWithHostNet
+      hostNetwork: true
+      volumes:
+        - name: host-root
+          hostPath:
+            path: /
