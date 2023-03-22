@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31729.503
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33502.350
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A4229FAA-3389-47E1-9530-148E7D0B191F}"
 	ProjectSection(SolutionItems) = preProject
@@ -24,16 +24,63 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StressTests", "StressTests"
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", "{581DB6C5-F890-431D-9523-7C0309487B15}"
+	ProjectSection(SolutionItems) = preProject
+		Deployment\install-dotnet.sh = Deployment\install-dotnet.sh
+		Deployment\install-github-cli.sh = Deployment\install-github-cli.sh
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernetes", "Kubernetes", "{26241869-DCEE-4C33-B604-DBA198E3D7F5}"
 	ProjectSection(SolutionItems) = preProject
 		Deployment\Kubernetes\add-control-plane-node.sh = Deployment\Kubernetes\add-control-plane-node.sh
 		Deployment\Kubernetes\add-worker-node.sh = Deployment\Kubernetes\add-worker-node.sh
+		Deployment\Kubernetes\configure-hugepages.sh = Deployment\Kubernetes\configure-hugepages.sh
+		Deployment\Kubernetes\enable-kubectl-autocompletion.sh = Deployment\Kubernetes\enable-kubectl-autocompletion.sh
+		Deployment\Kubernetes\hugepages-enforce.yaml = Deployment\Kubernetes\hugepages-enforce.yaml
 		Deployment\Kubernetes\install-cilium.sh = Deployment\Kubernetes\install-cilium.sh
+		Deployment\Kubernetes\install-helm.sh = Deployment\Kubernetes\install-helm.sh
+		Deployment\Kubernetes\install-krew.sh = Deployment\Kubernetes\install-krew.sh
 		Deployment\Kubernetes\install-kubeadm.sh = Deployment\Kubernetes\install-kubeadm.sh
+		Deployment\Kubernetes\install-kubectl-node-restart.sh = Deployment\Kubernetes\install-kubectl-node-restart.sh
+		Deployment\Kubernetes\install-kustomize.sh = Deployment\Kubernetes\install-kustomize.sh
+		Deployment\Kubernetes\install-metrics-server.sh = Deployment\Kubernetes\install-metrics-server.sh
+		Deployment\Kubernetes\install-openebs.sh = Deployment\Kubernetes\install-openebs.sh
+		Deployment\Kubernetes\metrics-server-components.yaml = Deployment\Kubernetes\metrics-server-components.yaml
+		Deployment\Kubernetes\metrics-server-override-values.yaml = Deployment\Kubernetes\metrics-server-override-values.yaml
 	EndProjectSection
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{D75DD692-4AD1-4572-B1B7-2EDFCC99AC82}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Harbor", "Harbor", "{19A9DCB8-CDDE-463B-A636-75CA4C5993FC}"
+	ProjectSection(SolutionItems) = preProject
+		Deployment\Harbor\clean-redis-cluster.sh = Deployment\Harbor\clean-redis-cluster.sh
+		Deployment\Harbor\create-redis-cluster.sh = Deployment\Harbor\create-redis-cluster.sh
+		Deployment\Harbor\harbor-redis-cluster.yaml = Deployment\Harbor\harbor-redis-cluster.yaml
+		Deployment\Harbor\harbor-redis-db.yaml = Deployment\Harbor\harbor-redis-db.yaml
+		Deployment\Harbor\install-harbor.sh = Deployment\Harbor\install-harbor.sh
+		Deployment\Harbor\install-postgresql.sh = Deployment\Harbor\install-postgresql.sh
+		Deployment\Harbor\install-redis.sh = Deployment\Harbor\install-redis.sh
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Powershell", "Powershell", "{FC204F89-9D30-4CAB-963B-03BF8C4C93C4}"
+	ProjectSection(SolutionItems) = preProject
+		Deployment\Powershell\prepare-windows.ps1 = Deployment\Powershell\prepare-windows.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "postgres", "postgres", "{C77213F9-8C53-46A0-B973-2D7B674F9844}"
+	ProjectSection(SolutionItems) = preProject
+		Deployment\Harbor\postgres\kustomization.yaml = Deployment\Harbor\postgres\kustomization.yaml
+		Deployment\Harbor\postgres\postgres.yaml = Deployment\Harbor\postgres\postgres.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ansible", "Ansible", "{91A3C077-21F4-407E-8383-129FFDA285D9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "playbooks", "playbooks", "{561B62CF-A595-4BB3-BD2D-0D4FFEA6B9AC}"
+	ProjectSection(SolutionItems) = preProject
+		Deployment\Ansible\playbooks\ansible.cfg = Deployment\Ansible\playbooks\ansible.cfg
+		Deployment\Ansible\playbooks\general-server.yaml = Deployment\Ansible\playbooks\general-server.yaml
+		Deployment\Ansible\playbooks\host-dependent-write.yaml = Deployment\Ansible\playbooks\host-dependent-write.yaml
+		Deployment\Ansible\playbooks\hosts = Deployment\Ansible\playbooks\hosts
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +104,11 @@ Global
 		{94615D39-CC4D-46E5-9D55-D286E1286275} = {760EB9E7-6626-4696-9D4C-AD04F75723B2}
 		{F21F8144-ECD5-4427-9C8C-359178169FC6} = {A28DC72B-61A2-4E7D-A8FF-D6ED1C1125C6}
 		{26241869-DCEE-4C33-B604-DBA198E3D7F5} = {581DB6C5-F890-431D-9523-7C0309487B15}
+		{19A9DCB8-CDDE-463B-A636-75CA4C5993FC} = {581DB6C5-F890-431D-9523-7C0309487B15}
+		{FC204F89-9D30-4CAB-963B-03BF8C4C93C4} = {581DB6C5-F890-431D-9523-7C0309487B15}
+		{C77213F9-8C53-46A0-B973-2D7B674F9844} = {19A9DCB8-CDDE-463B-A636-75CA4C5993FC}
+		{91A3C077-21F4-407E-8383-129FFDA285D9} = {581DB6C5-F890-431D-9523-7C0309487B15}
+		{561B62CF-A595-4BB3-BD2D-0D4FFEA6B9AC} = {91A3C077-21F4-407E-8383-129FFDA285D9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {44D1C44E-D9FB-4238-A9A6-09382CBBCED5}
