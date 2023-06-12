@@ -31,7 +31,11 @@ then
 	sudo apt-get install -y apt-transport-https ca-certificates curl
 
 	# Download the Google Cloud public signing key:
-	sudo curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+	sudo curl -fsSLo https://packages.cloud.google.com/apt/doc/apt-key.gpg 
+	
+	# Add key
+	sudo apt-key add apt-key.gpg
+
 	# Add the Kubernetes apt repository:
 	# TODO: xenial must based on edition
 	echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
