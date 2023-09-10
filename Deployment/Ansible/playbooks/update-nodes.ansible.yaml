@@ -1,18 +1,15 @@
-# ITNOA
-
-- name: Install vim
-  hosts: workers
-  become: True
+---
+- hosts: all
+  become: true
   tasks:
-    - name: Ansible Upgrade all Packages
+    - name: Upgrade all Packages
       register: updatesys
       apt:
         upgrade: full
         state: latest
-        update_cache: yes
+        update_cache: true
         cache_valid_time: 3600
+        update_only: true
     - name: Display the last line of the previous task to show that the cache was updated
       debug:
-        msg: "{{updatesys.stdout}}"
-    - name: install vim
-      apt: name=vim state=latest
+        msg: "{{ updatesys.stdout }}"

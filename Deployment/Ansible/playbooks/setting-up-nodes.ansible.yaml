@@ -1,0 +1,48 @@
+---
+- ansible.builtin.import_playbook: update-nodes.ansible.yaml
+- hosts: all
+  become: true
+  vars_files:
+  - env_variables
+  tasks:
+    # https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
+    - name: Ensure desired directory exist
+      ansible.builtin.file:
+        path: /etc/apt/keyrings
+        state: directory
+        mode: '0755'
+    - name: Add kubernetes repository
+      block:
+        - name: Get key
+          ansible.builtin.get_url:
+            url: https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key
+            dest: /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+        - name: Update list
+          ansible.builtin.apt_repository:
+            repo: deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /
+            filename: kubernetes.list
+            state: present
+    - name: Installing kubernetes required packages
+      apt:
+        pkg: "{{ packages }}"
+        state: present
+        update_cache: true
+        cache_valid_time: 3600
+    - name: Installing some additional packages for better system management
+      apt:
+        pkg:
+          - vim
+          - ufw
+        state: present
+        update_cache: true
+        cache_valid_time: 3600
+    - name: UFW - Allow SSH connections
+      community.general.ufw:
+        rule: allow
+        name: OpenSSH
+      become: true
+    - name: UFW - Enable and deny by default
+      community.general.ufw:
+        state: enabled
+        default: deny
+      become: true
