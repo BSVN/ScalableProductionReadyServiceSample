@@ -1,0 +1,35 @@
+---
+- hosts: masters
+  become: true
+  vars_files:
+    - env_variables
+  tasks:
+    - name: Pulling images required for seeting up a Kubernetes cluster
+      command: |
+        kubeadm config images pull
+      register: pull_images
+      changed_when: false
+    - name: Resetting the cluster
+      command: |
+        kubeadm reset -f
+      register: reset_cluster
+      changed_when: false
+    - name: Initializing the cluster
+      command: |
+        kubeadm init --apiserver-advertise-address={{ ad_addr }} --pod-network-cidr={{ cidr_v }}
+      register: init_cluster
+      changed_when: false
+
+    # https://www.maths.cam.ac.uk/computing/linux/unixinfo/perms#:~:text=644%20means%20you%20can%20read,users%20can%20only%20read%20it.
+    - name: Storing Logs and Generated token for future purpose
+      copy: content={{ init_cluster.stdout }} dest={{ token_file }} mode=0644
+      delegate_to: localhost
+      become: false
+
+    - name: Copying required files
+      shell: |
+        mkdir -p $HOME/.kube
+        sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+        sudo chown $(id -u):$(id -g) $HOME/.kube/config
+      changed_when: false
+      tags: skip_ansible_lint

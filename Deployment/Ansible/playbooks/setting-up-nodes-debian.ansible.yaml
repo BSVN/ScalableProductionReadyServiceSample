@@ -83,3 +83,15 @@
         reload: true
         sysctl_file: /etc/sysctl.d/k8s.conf
       with_dict: '{{ sysctl_settings }}'
+
+    # If kubelet version is 1.22 or greater we must to change docker driver
+    # https://sysnet4admin.gitbook.io/k8s/trouble-shooting/cluster-build/kubelet-is-not-properly-working-on-1.22-version
+    #
+    # TODO: Check kubelet version is 1.22 and docker cgroup driver is cgroupfs like docker system info | grep -i driver
+    - name: Change docker cgroup driver
+      ansible.builtin.blockinfile:
+        path: /etc/docker/daemon.json
+        block: |
+          {
+            "exec-opts": ["native.cgroupdriver=systemd"]
+          }

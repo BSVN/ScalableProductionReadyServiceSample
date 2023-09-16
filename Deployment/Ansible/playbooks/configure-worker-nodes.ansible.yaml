@@ -1,0 +1,21 @@
+---
+- hosts: workers
+  become: true
+  vars_files:
+    - env_variables
+  tasks:
+    - name: Copying token to worker nodes
+      copy: src={{ token_file }} dest=join_token mode=0644
+
+    - name: Joining worker nodes to the cluster
+      shell: |
+        set -o pipefail
+        kubeadm reset -f
+        cat join_token | tail -2 > out.sh
+        sh out.sh
+      changed_when: false
+      register: join_worker
+
+    - name: Displaying the output of the join command
+      debug:
+        msg: "{{ join_worker.stdout_lines }}"
