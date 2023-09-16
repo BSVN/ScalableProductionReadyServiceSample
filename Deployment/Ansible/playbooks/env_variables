@@ -5,10 +5,15 @@ packages:
 - kubeadm
 - kubectl
 
-services:
+debian_services:
 - docker
 - kubelet
 - ufw
+
+redhat_services:
+- docker
+- kubelet
+- firewalld
 
 # Based on https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#check-required-ports
 # and https://coreos.com/flannel/docs/latest/troubleshooting.html (Firewalls section)

@@ -1,12 +1,22 @@
 # ITNOA
 
 [workers]
-host1 ansible_host=172.22.64.3 ss=3
-host2 ansible_host=172.22.64.4 ss=4
-host3 ansible_host=172.22.64.5 ss=5
-host4 ansible_host=172.22.64.6 ss=6
-host5 ansible_host=172.22.64.6 ss=7
-host6 ansible_host=172.22.64.6 ss=8
+host1 ansible_host=172.22.64.3
+host2 ansible_host=172.22.64.4
+host3 ansible_host=172.22.64.5
+host4 ansible_host=172.22.64.6
+host5 ansible_host=172.22.64.7
+host6 ansible_host=172.22.64.8
+
+[masters]
+master ansible_host=172.22.64.2
+
+[etcd]
+master
+
+[kubernetes:children]
+masters
+workers
 
 [all:vars]
 ansible_connection=ssh

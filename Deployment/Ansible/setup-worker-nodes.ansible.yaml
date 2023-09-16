@@ -1,0 +1,9 @@
+---
+# ITNOA
+
+- ansible.builtin.import_playbook: playbooks/update-nodes.ansible.yaml
+- ansible.builtin.import_playbook: playbooks/prerequisites.ansible.yaml
+- ansible.builtin.import_playbook: playbooks/setting-up-nodes-debian.ansible.yaml
+- ansible.builtin.import_playbook: playbooks/configure-worker-nodes.ansible.yaml
+
+

@@ -3,13 +3,38 @@
   become: true
   tasks:
     - name: Upgrade all Packages
-      register: updatesys
-      apt:
-        upgrade: full
-        state: latest
-        update_cache: true
-        cache_valid_time: 3600
-        update_only: true
-    - name: Display the last line of the previous task to show that the cache was updated
-      debug:
-        msg: "{{ updatesys.stdout }}"
+      block:
+        - name: Normal Upgrade all packages
+          apt:
+            upgrade: dist
+            state: latest
+            purge: true
+            update_cache: true
+            cache_valid_time: 3600
+            install_recommends: true
+            allow_unauthenticated: true
+          async: 1000
+          poll: 0
+          register: updatesys
+          tags:
+            - skip_ansible_lint # latest-packages
+        - name: Wait for upgrade to complete
+          async_status:
+            jid: "{{ updatesys.ansible_job_id }}"
+          register: job_result
+          until: job_result.finished
+          retries: 100
+      when: ansible_os_family == 'Debian'
+      rescue:
+        - name: Use dpkg to repair packages
+          command: dpkg --configure -a
+          changed_when: 0
+          async: 1000
+          poll: 0
+          register: dpkg_repair
+        - name: Wait for dpkg repair to complete
+          async_status:
+            jid: "{{ dpkg_repair.ansible_job_id }}"
+          register: job_result
+          until: job_result.finished
+          retries: 100
