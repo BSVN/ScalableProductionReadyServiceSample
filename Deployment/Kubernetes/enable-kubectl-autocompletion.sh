@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # ITNOA
 
 echo 'source <(kubectl completion bash)' >>~/.bashrc

@@ -1,6 +1,6 @@
-# ITNOA
-
 #!/bin/bash
+
+# ITNOA
 
 # Check cilium cli exist or not?
 # https://stackoverflow.com/a/677212/1539100

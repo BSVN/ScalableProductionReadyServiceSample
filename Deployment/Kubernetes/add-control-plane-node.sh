@@ -1,6 +1,6 @@
-# ITNOA
-
 #!/bin/bash
+
+# ITNOA
 
 if systemctl is-active kubelet --quiet; then
     echo "kubelet is active, so add this node to control plane must be manually"

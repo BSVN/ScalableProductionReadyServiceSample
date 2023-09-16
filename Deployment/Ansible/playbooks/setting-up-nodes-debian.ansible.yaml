@@ -9,6 +9,7 @@
       net.bridge.bridge-nf-call-ip6tables: 1
       net.bridge.bridge-nf-call-iptables: 1
       net.ipv4.ip_forward: 1
+      vm.nr_hugepages: 1024
   tasks:
     # https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
     - name: Ensure desired directory exist
@@ -20,13 +21,17 @@
       block:
         - name: Get key
           ansible.builtin.get_url:
-            url: https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key
+            url: http://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key
             dest: /etc/apt/keyrings/kubernetes-apt-keyring.gpg
         - name: Update list
           ansible.builtin.apt_repository:
-            repo: deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /
+            repo: deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] http://pkgs.k8s.io/core:/stable:/v1.28/deb/ /
             filename: kubernetes.list
             state: present
+        - name: Update cache
+          ansible.builtin.apt:
+            update_cache: true
+            cache_valid_time: 3600
       when: ansible_distribution == 'Ubuntu'
     - name: Installing kubernetes required packages
       apt:
@@ -36,9 +41,7 @@
         cache_valid_time: 3600
     - name: Installing some additional packages for better system management
       apt:
-        pkg:
-          - vim
-          - ufw
+        pkg: "{{ debian_additional_packages }}"
         state: present
         update_cache: true
         cache_valid_time: 3600
@@ -95,3 +98,8 @@
           {
             "exec-opts": ["native.cgroupdriver=systemd"]
           }
+    - name: Apply to docker daemon
+      ansible.builtin.systemd:
+        name: docker
+        daemon_reload: true
+        state: restarted

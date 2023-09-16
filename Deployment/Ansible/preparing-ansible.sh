@@ -11,13 +11,15 @@
 if ! command -v ansible &> /dev/null ; then
     # https://askubuntu.com/a/1214268/101335
     # TODO: Move to specific function (os name)
-    readonly os_name=$(cat /etc/os-release | awk -F '=' '/^NAME/{print $2}' | awk '{print $1}' | tr -d '"')
+    os_name=$(< /etc/os-release awk -F '=' '/^NAME/{print $2}' | awk '{print $1}' | tr -d '"')
+    readonly os_name
     if [ "$os_name" == "Ubuntu" ]
     then
         echo "system is Ubuntu"
         sudo apt install -y ansible
         sudo apt install -y sshpass
         ansible-galaxy collection install collections/community-general-7.3.0.tar.gz
+        ansible-galaxy collection install collections/kubernetes-core-2.4.0.tar.gz
     elif [ "$os_name" == "CentOS" ]
     then
         echo "system is CentOS"
@@ -26,7 +28,7 @@ if ! command -v ansible &> /dev/null ; then
         echo "system is RHEL Linux"
         sudo yum install --disableplugin=subscription-manager -y ansible
 
-        # https://www.redhat.com/sysadmin/ansible-system-role 
+        # https://www.redhat.com/sysadmin/ansible-system-role
         sudo yum install --disableplugin=subscription-manager -y rhel-system-roles
 
         ansible-galaxy collection install community-docker-2.3.0.tar.gz
